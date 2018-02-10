@@ -25,11 +25,13 @@ func LazyServer(w http.ResponseWriter, req *http.Request) {
 }
 
 
-type Job struct {
+type LazyJob struct {
     Name       string
 }
 
-func (j *Job) Run() {
+func (j *LazyJob) Run() {
+    fmt.Println("Running lazy", j.Name)
+
     http.HandleFunc("/", LazyServer)
     http.ListenAndServe(":1111", nil)
 }
